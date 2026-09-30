@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
@@ -74,18 +75,22 @@ function App() {
   }
 
   return (
-    <main>
-      <Header storeName="ComponentCorner" cartCount={cart.length} />
-      <HomePage />
-      <ProductsPage products={products} addToCart={addToCart} />
-      <CartPage products={cart} removeFromCart={removeFromCart} />
-      <Footer
-        storeName="ComponentCorner"
-        email="hello@componentcorner.example"
-        phone="+1 (555) 010-2026"
-        address="123 Component Lane, Interface City"
-      />
-    </main>
+    <BrowserRouter>
+      <main>
+        <Header storeName="ComponentCorner" cartCount={cart.length} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/products" element={<ProductsPage products={products} addToCart={addToCart} />} />
+          <Route path="/cart" element={<CartPage products={cart} removeFromCart={removeFromCart} />} />
+        </Routes>
+        <Footer
+          storeName="ComponentCorner"
+          email="hello@componentcorner.example"
+          phone="+1 (555) 010-2026"
+          address="123 Component Lane, Interface City"
+        />
+      </main>
+    </BrowserRouter>
   )
 }
 
