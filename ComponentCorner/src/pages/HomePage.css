@@ -1,0 +1,22 @@
+.home-intro {
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.home-intro__list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.home-intro__list li {
+  background: #f1f1f8;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}

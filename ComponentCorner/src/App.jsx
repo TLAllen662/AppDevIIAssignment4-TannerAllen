@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import './App.css'
-import CartItem from './components/CartItem'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import ProductCard from './components/ProductCard'
+import HomePage from './pages/HomePage'
+import ProductsPage from './pages/ProductsPage'
+import CartPage from './pages/CartPage'
 
 function App() {
   const products = [
@@ -73,41 +73,12 @@ function App() {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId))
   }
 
-  const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0)
-
   return (
     <main>
       <Header storeName="ComponentCorner" cartCount={cart.length} />
-      <Hero
-        title="Smart components for modern shopping"
-        subtitle="Find thoughtful tools and resources for building better digital experiences."
-        ctaText="Explore products"
-      />
-      <h1>ComponentCorner Products</h1>
-      <section id="products" className="product-grid" aria-label="Featured products">
-        {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAddToCart={addToCart}
-          />
-        ))}
-      </section>
-      <section id="cart" className="cart-section" aria-label="Shopping cart">
-        <h2>Your Cart</h2>
-        {cart.length === 0 ? (
-          <p className="cart-empty">Your cart is empty.</p>
-        ) : (
-          <div className="cart-list">
-            {cart.map((item) => (
-              <CartItem key={item.id} item={item} onRemove={removeFromCart} />
-            ))}
-          </div>
-        )}
-        {cart.length > 0 && (
-          <p className="cart-total">Total: ${cartTotal.toFixed(2)}</p>
-        )}
-      </section>
+      <HomePage />
+      <ProductsPage products={products} addToCart={addToCart} />
+      <CartPage products={cart} removeFromCart={removeFromCart} />
       <Footer
         storeName="ComponentCorner"
         email="hello@componentcorner.example"
